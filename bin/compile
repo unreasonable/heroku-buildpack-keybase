@@ -1,0 +1,19 @@
+#!/bin/sh
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+echo "-----> Installing & running Keybase"
+
+if ! keybase_loc="$(type -p "$keybase")" || [[ -z $keybase_loc ]]; then
+  echo "Keybase already installed. Starting Keybase."
+  run_keybase -g
+else
+  echo "Installing Keybase."
+  curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
+  sudo apt install ./keybase_amd64.deb
+  echo "Starting Keybase."
+  run_keybase -g
+  rm ./keybase_amd64.deb
+fi | indent
