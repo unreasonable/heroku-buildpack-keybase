@@ -1,8 +1,4 @@
 #!/bin/sh
 
-if ! keybase_loc="$(type -p "$run_keybase")" || [[ -z $keybase_loc ]]; then
-  exit 1
-else
-  echo "keybase"
-  exit 0
-fi
+echo "keybase"
+exit 0
